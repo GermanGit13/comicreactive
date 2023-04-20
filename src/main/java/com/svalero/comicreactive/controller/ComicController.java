@@ -33,15 +33,16 @@ public class ComicController {
     }
 
     @GetMapping(value = "/comics/{reference}")
-    public ResponseEntity<Mono<Comic>> getComicReference(@PathVariable("reference") String reference) throws ComicNotFoundException {
-        Mono<Comic> comic = comicService.findByReference(reference);
-        return ResponseEntity.ok(comic);
+    private Mono<ResponseEntity<Comic>> getReference(@PathVariable("reference") String reference) throws ComicNotFoundException {
+        return this.comicService.findByReference(reference)
+                .flatMap(comic -> Mono.just(ResponseEntity.ok(comic)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
     @PostMapping(value = "/comics")
     public ResponseEntity<Mono<Comic>> addComic(@RequestBody Comic comic) {
         Mono<Comic> newComic = comicService.addComic(comic);
-        return ResponseEntity.ok(newComic);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newComic);
     }
 
 //    @DeleteMapping(value = "/comics/{reference}")
