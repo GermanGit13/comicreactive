@@ -12,12 +12,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/comics",
-					"protocol": "http",
+					"raw": "{{Path}}{{Host}}{{Puerto}}/comics",
 					"host": [
-						"localhost"
+						"{{Path}}{{Host}}{{Puerto}}"
 					],
-					"port": "8080",
 					"path": [
 						"comics"
 					]
@@ -31,12 +29,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/comics/Comics-2",
-					"protocol": "http",
+					"raw": "{{Path}}{{Host}}{{Puerto}}/comics/Comics-2",
 					"host": [
-						"localhost"
+						"{{Path}}{{Host}}{{Puerto}}"
 					],
-					"port": "8080",
 					"path": [
 						"comics",
 						"Comics-2"
@@ -60,12 +56,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/comics",
-					"protocol": "http",
+					"raw": "{{Path}}{{Host}}{{Puerto}}/comics",
 					"host": [
-						"localhost"
+						"{{Path}}{{Host}}{{Puerto}}"
 					],
-					"port": "8080",
 					"path": [
 						"comics"
 					]
@@ -79,12 +73,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/comics/Comics-105",
-					"protocol": "http",
+					"raw": "{{Path}}{{Host}}{{Puerto}}/comics/Comics-105",
 					"host": [
-						"localhost"
+						"{{Path}}{{Host}}{{Puerto}}"
 					],
-					"port": "8080",
 					"path": [
 						"comics",
 						"Comics-105"
