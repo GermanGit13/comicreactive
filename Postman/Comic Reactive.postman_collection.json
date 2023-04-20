@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "35325435-78f1-46d2-9a68-14e1bb6ed2ce",
+		"name": "Comic Reactive",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24068761"
+	},
+	"item": [
+		{
+			"name": "All Comic",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/comics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reference",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/comics/Comics-2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comics",
+						"Comics-2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Nuevo\",\r\n    \"category\": \"MARVEL\",\r\n    \"format\": \"cartoné\",\r\n    \"pages\": 520,\r\n    \"publisher\": \"panini comics\",\r\n    \"yearPublitacion\": 2023,\r\n    \"reference\": \"Comics-{{$randomInt}}\",\r\n    \"stock\": 5,\r\n    \"author\": \"CHRIS CLAREMONT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/comics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reference",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/comics/Comics-105",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comics",
+						"Comics-105"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
