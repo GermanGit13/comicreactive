@@ -3,7 +3,6 @@ package com.svalero.comicreactive.controller;
 import com.svalero.comicreactive.domain.Comic;
 import com.svalero.comicreactive.exception.ComicNotFoundException;
 import com.svalero.comicreactive.exception.ErrorMessage;
-import com.svalero.comicreactive.repository.ComicRepository;
 import com.svalero.comicreactive.service.ComicService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +14,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,9 +32,22 @@ public class ComicController {
 //        return busService.findAll().delayElements(Duration.ofSeconds(3)); //Opción para meter un retraso entre elemento y elemento que recibimos por si queremos procesar algo antes de recibir el siguiente
     }
 
+    @GetMapping(value = "/comics/{reference}")
+    public ResponseEntity<Mono<Comic>> getComicReference(@PathVariable String reference) throws ComicNotFoundException {
+        Mono<Comic> comic = comicService.findByReference(reference);
+        return ResponseEntity.ok(comic);
+    }
+
     @PostMapping(value = "/comics")
-    public void addComic(@RequestBody Comic comic) {
-        comicService.addComic(comic).block();
+    public ResponseEntity<Mono<Comic>> addComic(@RequestBody Comic comic) {
+        Mono<Comic> newComic = comicService.addComic(comic);
+        return ResponseEntity.ok(newComic);
+    }
+
+    @DeleteMapping(value = "/comics/{reference}")
+    public ResponseEntity<Mono<Comic>> deleteComic(@PathVariable String reference) throws ComicNotFoundException {
+        Mono<Comic> comic = comicService.deleteComic(reference);
+        return ResponseEntity.noContent().build();
     }
 
 
