@@ -17,4 +17,5 @@ public interface ComicRepository extends ReactiveMongoRepository<Comic, String> 
     Flux<Comic> findAll(); //Flux es cuando va a devolver una lista de elementos
 //    Mono<Comic> findById(String id); // Mono es un elemento suelto, un único elemento (parecido al optional)
     Mono<Comic> findByReference(String reference) throws ComicNotFoundException;
+//    Mono<Comic> deleteComic(String reference) throws ComicNotFoundException;
 }

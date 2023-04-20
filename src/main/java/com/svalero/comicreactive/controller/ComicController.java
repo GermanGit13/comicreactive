@@ -33,7 +33,7 @@ public class ComicController {
     }
 
     @GetMapping(value = "/comics/{reference}")
-    public ResponseEntity<Mono<Comic>> getComicReference(@PathVariable String reference) throws ComicNotFoundException {
+    public ResponseEntity<Mono<Comic>> getComicReference(@PathVariable("reference") String reference) throws ComicNotFoundException {
         Mono<Comic> comic = comicService.findByReference(reference);
         return ResponseEntity.ok(comic);
     }
@@ -44,12 +44,18 @@ public class ComicController {
         return ResponseEntity.ok(newComic);
     }
 
-    @DeleteMapping(value = "/comics/{reference}")
-    public ResponseEntity<Mono<Comic>> deleteComic(@PathVariable String reference) throws ComicNotFoundException {
-        Mono<Comic> comic = comicService.deleteComic(reference);
-        return ResponseEntity.noContent().build();
+//    @DeleteMapping(value = "/comics/{reference}")
+//    public ResponseEntity<Mono<Comic>> deleteComic(@PathVariable String reference) throws ComicNotFoundException {
+//        Mono<Comic> comic = comicService.deleteComic(reference);
+////        return ResponseEntity.noContent().build();
+//        return ResponseEntity.ok(comic);
+//    }
+    @DeleteMapping("/comics/{reference}")
+    private Mono<ResponseEntity<Comic>> deleteComic(@PathVariable("reference") String reference) throws ComicNotFoundException {
+        return this.comicService.deleteComic(reference)
+                .flatMap(comic -> Mono.just(ResponseEntity.ok(comic)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
-
 
     /**
      * @ExceptionHandler(ComicNotFoundException.class): manejador de excepciones, recoge la que le pasamos por parametro en este caso ComicNotFoundException.class

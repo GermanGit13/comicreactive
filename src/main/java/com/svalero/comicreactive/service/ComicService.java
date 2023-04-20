@@ -12,5 +12,4 @@ public interface ComicService {
     Mono<Comic> findByReference(String reference) throws ComicNotFoundException;
     Mono<Comic> addComic(Comic comic);
     Mono<Comic> deleteComic(String reference) throws ComicNotFoundException;
-
 }

@@ -37,8 +37,22 @@ public class ComicServiceImpl implements ComicService {
 
     @Override
     public Mono<Comic> deleteComic(String reference) throws ComicNotFoundException {
-        Mono<Comic> comic = comicRepository.findByReference(reference);
-        comicRepository.delete(comic.block());
-        return comic;
+        return this.comicRepository
+                .findByReference(reference)
+                .flatMap(p -> this.comicRepository.deleteById(p.getId()).thenReturn(p));
     }
+
+//    @Override
+//    public Mono<Comic> deleteComic(String reference) throws ComicNotFoundException {
+//        Mono<Comic> comic = comicRepository.findByReference(reference).onErrorReturn(new Comic());
+//        comicRepository.delete(comic.block());
+//        return comic;
+//    }
+
+//    @Override
+//    public Mono<Comic> deleteComic(String reference) throws ComicNotFoundException {
+//        Mono<Comic> comic = comicRepository.findByReference(reference);
+//        comicRepository.delete(comic.block());
+//        return comic;
+//    }
 }
