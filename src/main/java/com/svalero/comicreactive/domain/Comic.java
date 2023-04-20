@@ -10,8 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(value = "comic") //Anotación para crear de la colección en MongoDB (Como si fuera una tabla)
-public class comic {
+@Document(value = "comics") //Anotación para crear de la colección en MongoDB (Como si fuera una tabla)
+public class Comic {
 
     @Id
     private String id; //Las claves en MongoBd son cadenas de texto la compone con parámetros únicos
